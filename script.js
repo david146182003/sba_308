@@ -85,7 +85,7 @@
   }
   // store the id to variable 
   const studentsId = getLearnerId() //[125, 125, 125, 132, 132]
-  console.log(studentsId)
+  
   // generate id to unique
   const learnersId = [] //[125, 132]
   for(let i=0; i< studentsId.length; i++){
@@ -94,13 +94,18 @@
     }
   }
  
-  console.log(learnersId)
+  // console.log(learnersId)
 
   let getLearnerScore = () =>{
+    let points_possible_id_1 = AssignmentGroup.assignments[0].points_possible
+    let points_possible_id_2 = AssignmentGroup.assignments[1].points_possible
     let learnerScoreId_125 = {}
     let learnerScoreId_132 = {}
     let learnerAvgScoreId_125 ={}
     let learnerAvgScoreId_132 ={}
+    let averageGrade_125 = 0
+    let averageGrade_132 = 0
+
     LearnerSubmissions.forEach(id=>{
       if(id.learner_id == 125){
         if(id.assignment_id ==1){
@@ -117,12 +122,32 @@
         }
       }
     })
-    learnerAvgScoreId_125.a1 = learnerScoreId_125.id_1 /AssignmentGroup.assignments[0]
-
-    console.log(learnerScoreId_125, learnerScoreId_132, learnerAvgScoreId_125)
+    learnerAvgScoreId_125.a1 = learnerScoreId_125.id_1 / points_possible_id_1
+    learnerAvgScoreId_125.a2 = learnerScoreId_125.id_2 / points_possible_id_2
+    learnerAvgScoreId_132.a1 = learnerScoreId_132.id_1 / points_possible_id_1
+    learnerAvgScoreId_132.a2 = learnerScoreId_132.id_2 / points_possible_id_2
+    averageGrade_125 += (learnerScoreId_125.id_1 + learnerScoreId_125.id_2) / (points_possible_id_1 + points_possible_id_2)
+    averageGrade_132 += (learnerScoreId_132.id_1 + learnerScoreId_132.id_2) / (points_possible_id_1 + points_possible_id_2)
+    const learnerInfo_125 ={
+      id: learnersId[0],
+      avg: averageGrade_125,
+      1: learnerAvgScoreId_125.a1,
+      2: learnerAvgScoreId_125.a2
+    }
+    const learnerInfo_132 ={
+      id: learnersId[1],
+      avg: averageGrade_132,
+      1: learnerAvgScoreId_132.a1,
+      2: learnerAvgScoreId_132.a2
+    }
+    let result = [learnerInfo_125, learnerInfo_132]
+    return result
   
   }
-  getLearnerScore()
+
+  const result = getLearnerScore()
+  console.log(result)
+  
   
 
 

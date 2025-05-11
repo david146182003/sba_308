@@ -1,4 +1,1 @@
- 
-  // const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
-  
-  // console.log(result);
+console.log(studentsId)
