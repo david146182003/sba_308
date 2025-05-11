@@ -75,7 +75,7 @@
       }
     }
   ];
-  
+  // find the learner id by creating a function to find
   let getLearnerId = () =>{
     let learnerId = [];
     for(let i=0; i<LearnerSubmissions.length; i++){
@@ -83,7 +83,56 @@
     }
     return learnerId
   }
-  console.log(getLearnerId())
+  // store the id to variable 
+  const studentsId = getLearnerId() //[125, 125, 125, 132, 132]
+  console.log(studentsId)
+  // generate id to unique
+  const learnersId = [] //[125, 132]
+  for(let i=0; i< studentsId.length; i++){
+    if(!learnersId.includes(studentsId[i])){
+        learnersId.push(studentsId[i])
+    }
+  }
+ 
+  console.log(learnersId)
+
+  let getLearnerScore = () =>{
+    let learnerScoreId_125 = {}
+    let learnerScoreId_132 = {}
+    let learnerAvgScoreId_125 ={}
+    let learnerAvgScoreId_132 ={}
+    LearnerSubmissions.forEach(id=>{
+      if(id.learner_id == 125){
+        if(id.assignment_id ==1){
+          learnerScoreId_125.id_1 = id.submission.score
+        }else if(id.assignment_id ==2){
+          learnerScoreId_125.id_2 = id.submission.score
+        }
+      }
+      if(id.learner_id == 132){
+        if(id.assignment_id ==1){
+          learnerScoreId_132.id_1 = id.submission.score
+        }else if(id.assignment_id ==2){
+          learnerScoreId_132.id_2 = id.submission.score
+        }
+      }
+    })
+    learnerAvgScoreId_125.a1 = learnerScoreId_125.id_1 /AssignmentGroup.assignments[0]
+
+    console.log(learnerScoreId_125, learnerScoreId_132, learnerAvgScoreId_125)
+  
+  }
+  getLearnerScore()
+  
+
+
+
+
+  
+  
+  
+  
+  
 
   
   function getLearnerData(course, ag, submissions) {
@@ -92,25 +141,25 @@
     
 
 
-    const result = [
-      {
-        id: 125,
-        avg: 0.985, // (47 + 150) / (50 + 150)
-        1: 0.94, // 47 / 50
-        2: 1.0 // 150 / 150
-      },
-      {
-        id: 132,
-        avg: 0.82, // (39 + 125) / (50 + 150)
-        1: 0.78, // 39 / 50
-        2: 0.833 // late: (140 - 15) / 150
-      }
-    ];
+    // const result = [
+    //   {
+    //     id: 125,
+    //     avg: 0.985, // (47 + 150) / (50 + 150)
+    //     1: 0.94, // 47 / 50
+    //     2: 1.0 // 150 / 150
+    //   },
+    //   {
+    //     id: 132,
+    //     avg: 0.82, // (39 + 125) / (50 + 150)
+    //     1: 0.78, // 39 / 50
+    //     2: 0.833 // late: (140 - 15) / 150
+    //   }
+    // ];
   
-    return result;
+    // return result;
   }
   
-  const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
+  // const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
   
-  console.log(result);
+  // console.log(result);
   
