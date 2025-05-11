@@ -137,10 +137,44 @@
           }
         }
       })
-      learnerAvgScoreId_125.a1 = learnerScoreId_125.id_1 / points_possible_id_1
-      learnerAvgScoreId_125.a2 = learnerScoreId_125.id_2 / points_possible_id_2
-      learnerAvgScoreId_132.a1 = learnerScoreId_132.id_1 / points_possible_id_1
-      learnerAvgScoreId_132.a2 = learnerScoreId_132.id_2 / points_possible_id_2
+      let assignment_1_due = new Date(AssignmentGroup.assignments[0].due_at)
+      let assignment_2_due = new Date(AssignmentGroup.assignments[1].due_at)
+      let assignment_3_due = new Date(AssignmentGroup.assignments[2].due_at)
+      let learnerSubmitDate1_125
+      let learnerSubmitDate2_125
+      let learnerSubmitDate1_132
+      let learnerSubmitDate2_132
+      LearnerSubmissions.forEach(sub=>{
+        if(sub.learner_id == 125 && sub.assignment_id == 1){
+          learnerSubmitDate1_125 = new Date(sub.submission.submitted_at)
+        }else if(sub.learner_id == 125 && sub.assignment_id ==2){
+          learnerSubmitDate2_125 = new Date(sub.submission.submitted_at)
+        }else if(sub.learner_id == 132 && sub.assignment_id ==1){
+          learnerSubmitDate1_132 = new Date(sub.submission.submitted_at)
+        }else if(sub.learner_id == 132 && sub.assignment_id ==2){
+          learnerSubmitDate2_132 = new Date(sub.submission.submitted_at)
+        }
+      })
+      
+      console.log(learnerSubmitDate1_125, assignment_1_due)
+
+      if(learnerSubmitDate1_125 > assignment_1_due){
+        learnerAvgScoreId_125.a1 = (learnerScoreId_125.id_1 - (0.1*points_possible_id_1)) / points_possible_id_1
+        learnerScoreId_125.id_1 -= (0.1*points_possible_id_1)
+      }else{learnerAvgScoreId_125.a1 = learnerScoreId_125.id_1 / points_possible_id_1}
+      if(learnerSubmitDate2_125 > assignment_2_due){
+        learnerAvgScoreId_125.a2 = (learnerScoreId_125.id_2 -(0.1*points_possible_id_2)) / points_possible_id_2
+        learnerScoreId_125.id_2 -= (0.1*points_possible_id_2)
+      }else{learnerAvgScoreId_125.a2 = learnerScoreId_125.id_2 / points_possible_id_2}
+      if(learnerSubmitDate1_132 > assignment_1_due){
+        learnerAvgScoreId_132.a1 = (learnerScoreId_132.id_1 -(0.1*points_possible_id_1)) / points_possible_id_1
+        learnerScoreId_132.id_1 -= (0.1*points_possible_id_1)
+      }else{learnerAvgScoreId_132.a1 = learnerScoreId_132.id_1 / points_possible_id_1}
+      if(learnerSubmitDate2_132 > assignment_2_due){
+        learnerAvgScoreId_132.a2 = (learnerScoreId_132.id_2 -(0.1*points_possible_id_2)) / points_possible_id_2
+        learnerScoreId_132.id_2 -= (0.1*points_possible_id_2)
+      }else{learnerAvgScoreId_132.a2 = learnerScoreId_132.id_2 / points_possible_id_2}
+     
       averageGrade_125 += (learnerScoreId_125.id_1 + learnerScoreId_125.id_2) / (points_possible_id_1 + points_possible_id_2)
       averageGrade_132 += (learnerScoreId_132.id_1 + learnerScoreId_132.id_2) / (points_possible_id_1 + points_possible_id_2)
       const learnerInfo_125 ={

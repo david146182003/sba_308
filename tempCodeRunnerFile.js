@@ -1,3 +1,1 @@
-if(course !==AssignmentGroup.course_id || ag !== AssignmentGroup.id || submissions !==learnersId.forEach(id=>id)){
-    //   return "Error! The course doesn't match."
-    // }
+if(learnerSubmitDate1_125 > assignment_1_due)
