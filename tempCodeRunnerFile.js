@@ -1,1 +1,0 @@
-if(learnerSubmitDate1_125 > assignment_1_due)

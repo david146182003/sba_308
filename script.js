@@ -184,15 +184,15 @@
       averageGrade_132 += (learnerScoreId_132.id_1 + learnerScoreId_132.id_2) / (points_possible_id_1 + points_possible_id_2)
       const learnerInfo_125 ={
         id: learnersId[0],
-        avg: averageGrade_125,
-        1: learnerAvgScoreId_125.a1,
-        2: learnerAvgScoreId_125.a2
+        average: averageGrade_125,
+        assignment_1: learnerAvgScoreId_125.a1,
+        assignment_2: learnerAvgScoreId_125.a2
       }
       const learnerInfo_132 ={
         id: learnersId[1],
-        avg: averageGrade_132,
-        1: learnerAvgScoreId_132.a1,
-        2: learnerAvgScoreId_132.a2.toFixed(3)
+        average: averageGrade_132,
+        assignmet_1: learnerAvgScoreId_132.a1,
+        assignment_2: learnerAvgScoreId_132.a2.toFixed(3)
       }
       
       let result = [learnerInfo_125, learnerInfo_132]
