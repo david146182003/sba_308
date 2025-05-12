@@ -75,10 +75,12 @@
       }
     }
   ];
-  // find the learner id by creating a function to find
+
+  //try / catch
+  
   try{
     let x =5
-    console.log(x)
+    
   }catch(error){
     console.error(error)
     console.log("There was an Error somewhere")
@@ -87,9 +89,8 @@
   
   function getLearnerData(course, ag, submissions) {
     // here, we would process this data to achieve the desired result.
-    // if(course !==AssignmentGroup.course_id || ag !== AssignmentGroup.id || submissions !==learnersId.forEach(id=>id)){
-    //   return "Error! The course doesn't match."
-    // }
+
+    // find the learner id by creating a function to find
     let getLearnerId = () =>{
       let learnerId = [];
       for(let i=0; i<LearnerSubmissions.length; i++){
@@ -142,8 +143,10 @@
       let assignment_3_due = new Date(AssignmentGroup.assignments[2].due_at)
       let learnerSubmitDate1_125
       let learnerSubmitDate2_125
+      let learnerSubmitDate3_125
       let learnerSubmitDate1_132
       let learnerSubmitDate2_132
+    
       LearnerSubmissions.forEach(sub=>{
         if(sub.learner_id == 125 && sub.assignment_id == 1){
           learnerSubmitDate1_125 = new Date(sub.submission.submitted_at)
@@ -153,11 +156,13 @@
           learnerSubmitDate1_132 = new Date(sub.submission.submitted_at)
         }else if(sub.learner_id == 132 && sub.assignment_id ==2){
           learnerSubmitDate2_132 = new Date(sub.submission.submitted_at)
+        }else if(sub.learner_id == 125 && sub.assignment_id ==3){
+          learnerSubmitDate3_125 = new Date(sub.submission.submitted_at)
         }
       })
-      
-      console.log(learnerSubmitDate1_125, assignment_1_due)
+    
 
+      // find if the submittion paseed the due date
       if(learnerSubmitDate1_125 > assignment_1_due){
         learnerAvgScoreId_125.a1 = (learnerScoreId_125.id_1 - (0.1*points_possible_id_1)) / points_possible_id_1
         learnerScoreId_125.id_1 -= (0.1*points_possible_id_1)
@@ -187,8 +192,9 @@
         id: learnersId[1],
         avg: averageGrade_132,
         1: learnerAvgScoreId_132.a1,
-        2: learnerAvgScoreId_132.a2
+        2: learnerAvgScoreId_132.a2.toFixed(3)
       }
+      console.log(typeof(learnerInfo_132[1]))
       let result = [learnerInfo_125, learnerInfo_132]
       return result
     
