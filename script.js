@@ -194,7 +194,7 @@
         1: learnerAvgScoreId_132.a1,
         2: learnerAvgScoreId_132.a2.toFixed(3)
       }
-      console.log(typeof(learnerInfo_132[1]))
+      
       let result = [learnerInfo_125, learnerInfo_132]
       return result
     
